@@ -1,0 +1,139 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:sukiUi="clr-namespace:SukiUI.Controls;assembly=SukiUI"
+             mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="640"
+             x:Class="ElvaraOSTools.Views.MaintPage">
+    <TabControl x:Name="MainTabs" Margin="8">
+
+        <!-- 清理 pacman 缓存 -->
+        <TabItem Header="清理 pacman 缓存">
+            <Grid RowDefinitions="Auto,*,Auto" Margin="8">
+                <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Button x:Name="BtnRunPaccache" Content="执行清理" Classes="Accent" Padding="14,6"/>
+                </sukiUi:GlassCard>
+                <sukiUi:GlassCard Grid.Row="1" Padding="8">
+                    <ScrollViewer>
+                        <TextBlock x:Name="PaccacheText" FontFamily="monospace" FontSize="12"
+                                   TextWrapping="Wrap" Opacity="0.85" Text="切换到此标签页自动分析缓存…"/>
+                    </ScrollViewer>
+                </sukiUi:GlassCard>
+                <Border Grid.Row="2" Padding="4,6">
+                    <TextBlock x:Name="PaccacheStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
+                </Border>
+            </Grid>
+        </TabItem>
+
+        <!-- 清理系统日志 -->
+        <TabItem Header="清理系统日志">
+            <Grid RowDefinitions="Auto,*,Auto" Margin="8">
+                <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <TextBlock Grid.Column="0" Text="保留大小：" VerticalAlignment="Center" Margin="0,0,8,0"/>
+                        <TextBox x:Name="JournalSizeInput" Grid.Column="1" Text="200M"
+                                 Watermark="如 200M、1G" Margin="0,0,8,0"/>
+                        <Button x:Name="BtnRunJournal" Grid.Column="2" Content="清理日志" Classes="Accent" Padding="14,6"/>
+                    </Grid>
+                </sukiUi:GlassCard>
+                <sukiUi:GlassCard Grid.Row="1" Padding="8">
+                    <ScrollViewer>
+                        <TextBlock x:Name="JournalText" FontFamily="monospace" FontSize="12"
+                                   TextWrapping="Wrap" Opacity="0.85" Text="切换到此标签页自动显示日志占用…"/>
+                    </ScrollViewer>
+                </sukiUi:GlassCard>
+                <Border Grid.Row="2" Padding="4,6">
+                    <TextBlock x:Name="JournalStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
+                </Border>
+            </Grid>
+        </TabItem>
+
+        <!-- 检查 .pacnew 文件 -->
+        <TabItem Header="检查 .pacnew 文件">
+            <Grid RowDefinitions="Auto,*,Auto" Margin="8">
+                <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button x:Name="BtnPacnewDiff"  Content="查看 Diff"        Classes="Flat"   Padding="12,6" IsEnabled="False"/>
+                        <Button x:Name="BtnPacnewMerge" Content="合并（覆盖原文件）" Classes="Accent" Padding="14,6" IsEnabled="False"/>
+                    </StackPanel>
+                </sukiUi:GlassCard>
+                <sukiUi:GlassCard Grid.Row="1" Padding="4">
+                    <Grid RowDefinitions="*,8,*">
+                        <ListBox x:Name="PacnewList" Grid.Row="0"/>
+                        <ScrollViewer Grid.Row="2">
+                            <TextBlock x:Name="PacnewDiffText" FontFamily="monospace" FontSize="11"
+                                       TextWrapping="Wrap" Opacity="0.85" Text="选中文件后点击「查看 Diff」"/>
+                        </ScrollViewer>
+                    </Grid>
+                </sukiUi:GlassCard>
+                <Border Grid.Row="2" Padding="4,6">
+                    <TextBlock x:Name="PacnewStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
+                </Border>
+            </Grid>
+        </TabItem>
+
+        <!-- 重建 initramfs -->
+        <TabItem Header="重建 initramfs">
+            <Grid RowDefinitions="Auto,*,Auto" Margin="8">
+                <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Button x:Name="BtnRunInitramfs" Content="执行 mkinitcpio -P" Classes="Accent" Padding="14,6"/>
+                </sukiUi:GlassCard>
+                <sukiUi:GlassCard Grid.Row="1" Padding="8">
+                    <ScrollViewer>
+                        <TextBlock x:Name="InitramfsText" FontFamily="monospace" FontSize="12"
+                                   TextWrapping="Wrap" Opacity="0.85"
+                                   Text="点击上方按钮重建所有内核的 initramfs（需要 root）。"/>
+                    </ScrollViewer>
+                </sukiUi:GlassCard>
+                <Border Grid.Row="2" Padding="4,6">
+                    <TextBlock x:Name="InitramfsStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
+                </Border>
+            </Grid>
+        </TabItem>
+
+        <!-- 更新 GRUB 配置 -->
+        <TabItem Header="更新 GRUB 配置">
+            <Grid RowDefinitions="Auto,*,Auto" Margin="8">
+                <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Button x:Name="BtnRunGrub" Content="执行 grub-mkconfig" Classes="Accent" Padding="14,6"/>
+                </sukiUi:GlassCard>
+                <sukiUi:GlassCard Grid.Row="1" Padding="8">
+                    <ScrollViewer>
+                        <TextBlock x:Name="GrubText" FontFamily="monospace" FontSize="12"
+                                   TextWrapping="Wrap" Opacity="0.85"
+                                   Text="点击上方按钮更新 GRUB 配置（需要 root）。"/>
+                    </ScrollViewer>
+                </sukiUi:GlassCard>
+                <Border Grid.Row="2" Padding="4,6">
+                    <TextBlock x:Name="GrubStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
+                </Border>
+            </Grid>
+        </TabItem>
+
+        <!-- 编辑内核参数 -->
+        <TabItem Header="编辑内核参数">
+            <Grid RowDefinitions="Auto,*,Auto" Margin="8">
+                <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <TextBlock Grid.Column="0" Text="GRUB_CMDLINE_LINUX_DEFAULT："
+                                   VerticalAlignment="Center" Margin="0,0,8,0" FontSize="12"/>
+                        <TextBox x:Name="GrubCmdlineInput" Grid.Column="1" Margin="0,0,8,0"/>
+                        <Button x:Name="BtnSaveGrubCmdline" Grid.Column="2"
+                                Content="保存参数" Classes="Accent" Padding="14,6"/>
+                    </Grid>
+                </sukiUi:GlassCard>
+                <sukiUi:GlassCard Grid.Row="1" Padding="8">
+                    <ScrollViewer>
+                        <TextBlock x:Name="GrubEditText" FontFamily="monospace" FontSize="12"
+                                   TextWrapping="Wrap" Opacity="0.85"
+                                   Text="切换到此标签页自动读取当前参数…"/>
+                    </ScrollViewer>
+                </sukiUi:GlassCard>
+                <Border Grid.Row="2" Padding="4,6">
+                    <TextBlock x:Name="GrubEditStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
+                </Border>
+            </Grid>
+        </TabItem>
+
+    </TabControl>
+</UserControl>

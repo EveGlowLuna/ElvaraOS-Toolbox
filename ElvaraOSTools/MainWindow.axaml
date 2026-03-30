@@ -1,0 +1,32 @@
+<sukiUi:SukiWindow
+    x:Class="ElvaraOSTools.MainWindow"
+    xmlns:views="clr-namespace:ElvaraOSTools.Views"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:mi="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+    xmlns:sukiUi="clr-namespace:SukiUI.Controls;assembly=SukiUI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    WindowStartupLocation="CenterScreen"
+    Width="1024" Height="640"
+    Title="EvlaraOS Tools">
+    <Border Margin="20">
+        <TabControl>
+            <TabItem Header="主页">
+                <views:WelcomePage />
+            </TabItem>
+            <TabItem Header="包管理增强">
+                <views:PMEPage />
+            </TabItem>
+            <TabItem Header="NVIDIA 专区">
+                <views:NvidiaPage />
+            </TabItem>
+            <TabItem Header="系统维护">
+                <views:MaintPage />
+            </TabItem>
+            <TabItem Header="系统服务">
+                <views:ServicesPage />
+            </TabItem>
+        </TabControl>
+    </Border>
+</sukiUi:SukiWindow>
