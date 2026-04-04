@@ -116,8 +116,15 @@ public partial class PMEPage : UserControl
     {
         SetText("IntegrityStatus", "正在运行 pacman -Qkk，请稍候…");
         var sb = new StringBuilder();
-        await StreamAsync("pacman", "-Qkk",
-            line => Dispatcher.UIThread.Post(() => { sb.AppendLine(line); Get<TextBlock>("IntegrityText").Text = sb.ToString(); }));
+        var lck = new object();
+        await StreamAsync("pacman", "-Qkk", line =>
+        {
+            string snapshot;
+            lock (lck) { sb.AppendLine(line); snapshot = sb.ToString(); }
+            Dispatcher.UIThread.Post(
+                () => Get<TextBlock>("IntegrityText").Text = snapshot,
+                DispatcherPriority.Background);
+        });
         SetText("IntegrityStatus", "检查完成");
     }
 
