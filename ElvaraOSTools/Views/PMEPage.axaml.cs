@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -14,8 +15,11 @@ namespace ElvaraOSTools.Views;
 public partial class PMEPage : UserControl
 {
     private List<string> _orphans   = [];
+    private readonly ObservableCollection<string> _orphanItems = [];
     private List<string> _explicit  = [];
+    private readonly ObservableCollection<string> _explicitItems = [];
     private List<(string display, string path)> _downgradeEntries = [];
+    private readonly ObservableCollection<string> _downgradeItems = [];
 
     public PMEPage()
     {
@@ -26,7 +30,10 @@ public partial class PMEPage : UserControl
     private void WireAll()
     {
         var tabs = Get<TabControl>("MainTabs");
-        tabs.SelectionChanged += (_, _) => OnTabChanged(tabs.SelectedIndex);
+        tabs.SelectionChanged += (_, e) =>
+        {
+            if (e.Source is TabControl) OnTabChanged(tabs.SelectedIndex);
+        };
 
         // Orphans
         Get<Button>("BtnDeleteOrphans").Click += (_, _) => _ = DeleteOrphansAsync();
@@ -58,6 +65,9 @@ public partial class PMEPage : UserControl
         Get<Button>("BtnMirrorBackup").Click     += (_, _) => _ = BackupMirrorlistAsync();
 
         // Load first tab
+        Get<ListBox>("ResultList").ItemsSource   = _orphanItems;
+        Get<ListBox>("ExplicitList").ItemsSource = _explicitItems;
+        Get<ListBox>("DowngradeList").ItemsSource = _downgradeItems;
         OnTabChanged(0);
     }
 
@@ -81,7 +91,8 @@ public partial class PMEPage : UserControl
         _orphans = output.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList();
         Dispatcher.UIThread.Post(() =>
         {
-            Get<ListBox>("ResultList").ItemsSource = _orphans;
+            _orphanItems.Clear();
+            foreach (var p in _orphans) _orphanItems.Add(p);
             Get<Button>("BtnDeleteOrphans").IsVisible = _orphans.Count > 0;
             SetText("OrphanStatus", _orphans.Count == 0 ? "没有孤儿包 ✓" : $"找到 {_orphans.Count} 个孤儿包，选中后点击删除");
         });
@@ -106,7 +117,7 @@ public partial class PMEPage : UserControl
         SetText("IntegrityStatus", "正在运行 pacman -Qkk，请稍候…");
         var sb = new StringBuilder();
         await StreamAsync("pacman", "-Qkk",
-            line => { sb.AppendLine(line); Dispatcher.UIThread.Post(() => Get<TextBlock>("IntegrityText").Text = sb.ToString()); });
+            line => Dispatcher.UIThread.Post(() => { sb.AppendLine(line); Get<TextBlock>("IntegrityText").Text = sb.ToString(); }));
         SetText("IntegrityStatus", "检查完成");
     }
 
@@ -142,7 +153,8 @@ public partial class PMEPage : UserControl
         });
         Dispatcher.UIThread.Post(() =>
         {
-            Get<ListBox>("DowngradeList").ItemsSource = _downgradeEntries.Select(e => e.display).ToList();
+            _downgradeItems.Clear();
+            foreach (var e in _downgradeEntries) _downgradeItems.Add(e.display);
             Get<Button>("BtnDowngradeExec").IsVisible = _downgradeEntries.Count > 0;
             SetText("DowngradeStatus", _downgradeEntries.Count == 0
                 ? $"缓存中没有 {pkg} 的旧版本"
@@ -171,7 +183,8 @@ public partial class PMEPage : UserControl
         _explicit = output.Split('\n', StringSplitOptions.RemoveEmptyEntries).ToList();
         Dispatcher.UIThread.Post(() =>
         {
-            Get<ListBox>("ExplicitList").ItemsSource = _explicit;
+            _explicitItems.Clear();
+            foreach (var p in _explicit) _explicitItems.Add(p);
             SetText("ExplicitStatus", $"共 {_explicit.Count} 个显式安装的包");
         });
     }
@@ -255,10 +268,7 @@ public partial class PMEPage : UserControl
         var sb = new StringBuilder();
         const string cmd = "reflector -a 12 -c cn -f 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist";
         await RunElevatedStreamAsync("", cmd, line =>
-        {
-            sb.AppendLine(line);
-            Dispatcher.UIThread.Post(() => Get<TextBox>("MirrorlistEditor").Text = sb.ToString());
-        });
+            Dispatcher.UIThread.Post(() => { sb.AppendLine(line); Get<TextBox>("MirrorlistEditor").Text = sb.ToString(); }));
         // Reload the saved mirrorlist after reflector finishes
         await LoadMirrorlistAsync();
         SetText("MirrorStatus", "reflector 配置完成，mirrorlist 已更新");

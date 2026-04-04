@@ -204,8 +204,8 @@ public partial class ServicesPage : UserControl
         await Task.Run(async () =>
         {
             var proc = Process.Start(psi); if (proc == null) return;
-            proc.OutputDataReceived += (_, e) => { if (e.Data != null) { sb.AppendLine(e.Data); Dispatcher.UIThread.Post(() => SetLog(sb.ToString())); } };
-            proc.ErrorDataReceived  += (_, e) => { if (e.Data != null) { sb.AppendLine(e.Data); Dispatcher.UIThread.Post(() => SetLog(sb.ToString())); } };
+            proc.OutputDataReceived += (_, e) => { if (e.Data != null) Dispatcher.UIThread.Post(() => { sb.AppendLine(e.Data); SetLog(sb.ToString()); }); };
+            proc.ErrorDataReceived  += (_, e) => { if (e.Data != null) Dispatcher.UIThread.Post(() => { sb.AppendLine(e.Data); SetLog(sb.ToString()); }); };
             proc.BeginOutputReadLine(); proc.BeginErrorReadLine();
             await proc.WaitForExitAsync();
         });

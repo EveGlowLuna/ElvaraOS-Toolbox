@@ -1,11 +1,12 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:sukiUI="clr-namespace:SukiUI;assembly=SukiUI"
              xmlns:materialIcons="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              x:Class="ElvaraOSTools.App"
-             RequestedThemeVariant="Default">
+             RequestedThemeVariant="Dark">
 
     <Application.Styles>
-        <sukiUI:SukiTheme Locale="zh-CN" ThemeColor="Orange"></sukiUI:SukiTheme>
-        <materialIcons:MaterialIconStyles /></Application.Styles>
+        <FluentTheme />
+        <materialIcons:MaterialIconStyles />
+        <StyleInclude Source="avares://ElvaraOSTools/Styles/AppStyles.axaml" />
+    </Application.Styles>
 </Application>

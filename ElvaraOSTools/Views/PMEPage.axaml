@@ -2,7 +2,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:sukiUi="clr-namespace:SukiUI.Controls;assembly=SukiUI"
              mc:Ignorable="d" d:DesignWidth="1024" d:DesignHeight="640"
              x:Class="ElvaraOSTools.Views.PMEPage">
     <Grid Margin="8" RowDefinitions="*">
@@ -11,16 +10,16 @@
             <!-- 孤儿包清理 -->
             <TabItem Header="孤儿包清理">
                 <Grid RowDefinitions="Auto,*,Auto" Margin="8">
-                    <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Border Grid.Row="0" Classes="Card" Padding="12,8" Margin="0,0,0,8">
                         <Grid ColumnDefinitions="*,Auto">
                             <TextBlock Grid.Column="0" Text="孤儿包清理" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
                             <Button x:Name="BtnDeleteOrphans" Grid.Column="1" Content="删除选中"
                                     Classes="Accent" Padding="14,6" IsVisible="False"/>
                         </Grid>
-                    </sukiUi:GlassCard>
-                    <sukiUi:GlassCard Grid.Row="1" Padding="4">
-                        <ListBox x:Name="ResultList" SelectionMode="Multiple"/>
-                    </sukiUi:GlassCard>
+                    </Border>
+                    <Border Grid.Row="1" Classes="Card" Padding="4">
+                        <ListBox x:Name="ResultList" SelectionMode="Multiple,Toggle"/>
+                    </Border>
                     <Border Grid.Row="2" Padding="4,6">
                         <TextBlock x:Name="OrphanStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
                     </Border>
@@ -30,12 +29,12 @@
             <!-- 包完整性检查 -->
             <TabItem Header="包完整性检查">
                 <Grid RowDefinitions="*,Auto" Margin="8">
-                    <sukiUi:GlassCard Grid.Row="0" Padding="8">
+                    <Border Grid.Row="0" Classes="Card" Padding="8">
                         <ScrollViewer>
-                            <TextBlock x:Name="IntegrityText" FontFamily="monospace" FontSize="12"
+                            <TextBlock x:Name="IntegrityText" FontFamily="Monospace" FontSize="12"
                                        TextWrapping="Wrap" Opacity="0.85" Text="切换到此标签页自动开始检查…"/>
                         </ScrollViewer>
-                    </sukiUi:GlassCard>
+                    </Border>
                     <Border Grid.Row="1" Padding="4,6">
                         <TextBlock x:Name="IntegrityStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
                     </Border>
@@ -45,18 +44,18 @@
             <!-- 文件归属查询 -->
             <TabItem Header="文件归属查询">
                 <Grid RowDefinitions="Auto,*,Auto" Margin="8">
-                    <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Border Grid.Row="0" Classes="Card" Padding="12,8" Margin="0,0,0,8">
                         <Grid ColumnDefinitions="*,Auto">
                             <TextBox x:Name="OwnerInput" Grid.Column="0" Watermark="输入文件路径，如 /usr/bin/bash" Margin="0,0,8,0"/>
                             <Button x:Name="BtnOwnerQuery" Grid.Column="1" Content="查询" Classes="Accent" Padding="14,6"/>
                         </Grid>
-                    </sukiUi:GlassCard>
-                    <sukiUi:GlassCard Grid.Row="1" Padding="8">
+                    </Border>
+                    <Border Grid.Row="1" Classes="Card" Padding="8">
                         <ScrollViewer>
-                            <TextBlock x:Name="OwnerText" FontFamily="monospace" FontSize="12"
+                            <TextBlock x:Name="OwnerText" FontFamily="Monospace" FontSize="12"
                                        TextWrapping="Wrap" Opacity="0.85" Text="输入文件路径后点击查询"/>
                         </ScrollViewer>
-                    </sukiUi:GlassCard>
+                    </Border>
                     <Border Grid.Row="2" Padding="4,6">
                         <TextBlock x:Name="OwnerStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
                     </Border>
@@ -66,16 +65,16 @@
             <!-- 版本降级 -->
             <TabItem Header="版本降级">
                 <Grid RowDefinitions="Auto,*,Auto" Margin="8">
-                    <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Border Grid.Row="0" Classes="Card" Padding="12,8" Margin="0,0,0,8">
                         <Grid ColumnDefinitions="*,Auto,Auto">
                             <TextBox x:Name="DowngradeInput" Grid.Column="0" Watermark="输入包名查找缓存版本" Margin="0,0,8,0"/>
                             <Button x:Name="BtnDowngradeFind" Grid.Column="1" Content="查找" Classes="Flat" Padding="12,6" Margin="0,0,8,0"/>
                             <Button x:Name="BtnDowngradeExec" Grid.Column="2" Content="降级到选中版本" Classes="Accent" Padding="14,6" IsVisible="False"/>
                         </Grid>
-                    </sukiUi:GlassCard>
-                    <sukiUi:GlassCard Grid.Row="1" Padding="4">
+                    </Border>
+                    <Border Grid.Row="1" Classes="Card" Padding="4">
                         <ListBox x:Name="DowngradeList"/>
-                    </sukiUi:GlassCard>
+                    </Border>
                     <Border Grid.Row="2" Padding="4,6">
                         <TextBlock x:Name="DowngradeStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
                     </Border>
@@ -85,15 +84,15 @@
             <!-- 显式安装包列表 -->
             <TabItem Header="显式安装包列表">
                 <Grid RowDefinitions="Auto,*,Auto" Margin="8">
-                    <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Border Grid.Row="0" Classes="Card" Padding="12,8" Margin="0,0,0,8">
                         <StackPanel Orientation="Horizontal" Spacing="8">
                             <Button x:Name="BtnExportList" Content="导出到文件" Classes="Flat" Padding="12,6"/>
                             <Button x:Name="BtnImportList" Content="从文件导入安装" Classes="Flat" Padding="12,6"/>
                         </StackPanel>
-                    </sukiUi:GlassCard>
-                    <sukiUi:GlassCard Grid.Row="1" Padding="4">
+                    </Border>
+                    <Border Grid.Row="1" Classes="Card" Padding="4">
                         <ListBox x:Name="ExplicitList"/>
-                    </sukiUi:GlassCard>
+                    </Border>
                     <Border Grid.Row="2" Padding="4,6">
                         <TextBlock x:Name="ExplicitStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
                     </Border>
@@ -103,18 +102,18 @@
             <!-- 包信息查询 -->
             <TabItem Header="包信息查询">
                 <Grid RowDefinitions="Auto,*,Auto" Margin="8">
-                    <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Border Grid.Row="0" Classes="Card" Padding="12,8" Margin="0,0,0,8">
                         <Grid ColumnDefinitions="*,Auto">
                             <TextBox x:Name="PkgInfoInput" Grid.Column="0" Watermark="输入包名" Margin="0,0,8,0"/>
                             <Button x:Name="BtnPkgInfoQuery" Grid.Column="1" Content="查询" Classes="Accent" Padding="14,6"/>
                         </Grid>
-                    </sukiUi:GlassCard>
-                    <sukiUi:GlassCard Grid.Row="1" Padding="8">
+                    </Border>
+                    <Border Grid.Row="1" Classes="Card" Padding="8">
                         <ScrollViewer>
-                            <TextBlock x:Name="PkgInfoText" FontFamily="monospace" FontSize="12"
+                            <TextBlock x:Name="PkgInfoText" FontFamily="Monospace" FontSize="12"
                                        TextWrapping="Wrap" Opacity="0.85" Text="输入包名后点击查询"/>
                         </ScrollViewer>
-                    </sukiUi:GlassCard>
+                    </Border>
                     <Border Grid.Row="2" Padding="4,6">
                         <TextBlock x:Name="PkgInfoStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
                     </Border>
@@ -124,7 +123,7 @@
             <!-- 镜像源配置 -->
             <TabItem Header="镜像源配置">
                 <Grid RowDefinitions="Auto,*,Auto" Margin="8">
-                    <sukiUi:GlassCard Grid.Row="0" Padding="12,8" Margin="0,0,0,8">
+                    <Border Grid.Row="0" Classes="Card" Padding="12,8" Margin="0,0,0,8">
                         <Grid ColumnDefinitions="*,Auto,Auto,Auto,Auto">
                             <TextBlock Grid.Column="0" Text="当前 mirrorlist" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
                             <Button x:Name="BtnMirrorReload" Grid.Column="1" Content="刷新"
@@ -136,16 +135,16 @@
                             <Button x:Name="BtnMirrorBackup" Grid.Column="4" Content="备份当前"
                                     Classes="Flat" Padding="12,6"/>
                         </Grid>
-                    </sukiUi:GlassCard>
-                    <sukiUi:GlassCard Grid.Row="1" Padding="8">
+                    </Border>
+                    <Border Grid.Row="1" Classes="Card" Padding="8">
                         <TextBox x:Name="MirrorlistEditor"
                                  AcceptsReturn="True"
-                                 FontFamily="monospace"
+                                 FontFamily="Monospace"
                                  FontSize="12"
                                  TextWrapping="NoWrap"
                                  VerticalAlignment="Stretch"
                                  HorizontalAlignment="Stretch"/>
-                    </sukiUi:GlassCard>
+                    </Border>
                     <Border Grid.Row="2" Padding="4,6">
                         <TextBlock x:Name="MirrorStatus" FontSize="11" Opacity="0.5" Text="就绪"/>
                     </Border>

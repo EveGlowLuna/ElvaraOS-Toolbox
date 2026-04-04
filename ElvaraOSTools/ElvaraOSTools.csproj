@@ -35,6 +35,6 @@
         <PackageReference Include="Avalonia.X11" Version="11.3.12" />
         <PackageReference Include="Material.Icons" Version="3.0.1-nightly.0.4" />
         <PackageReference Include="Material.Icons.Avalonia" Version="2.1.0" />
-        <PackageReference Include="SukiUI" Version="6.0.4-nightly20260328" />
+
     </ItemGroup>
 </Project>

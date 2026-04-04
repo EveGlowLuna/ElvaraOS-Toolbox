@@ -1,15 +1,11 @@
-using Avalonia.Styling;
-using SukiUI;
-using SukiUI.Controls;
+using Avalonia.Controls;
 
 namespace ElvaraOSTools;
 
-public partial class MainWindow : SukiWindow
+public partial class MainWindow : Window
 {
     public MainWindow()
     {
         InitializeComponent();
-        SukiTheme theme = SukiTheme.GetInstance();
-        // SukiTheme.GetInstance().ChangeBaseTheme(ThemeVariant.Dark);
     }
 }

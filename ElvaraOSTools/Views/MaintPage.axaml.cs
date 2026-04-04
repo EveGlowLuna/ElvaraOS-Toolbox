@@ -24,7 +24,10 @@ public partial class MaintPage : UserControl
     private void WireAll()
     {
         var tabs = Get<TabControl>("MainTabs");
-        tabs.SelectionChanged += (_, _) => OnTabChanged(tabs.SelectedIndex);
+        tabs.SelectionChanged += (_, e) =>
+        {
+            if (e.Source is TabControl) OnTabChanged(tabs.SelectedIndex);
+        };
 
         Get<Button>("BtnRunPaccache").Click     += (_, _) => _ = ExecPaccacheAsync();
         Get<Button>("BtnRunJournal").Click      += (_, _) => _ = ExecJournalAsync();

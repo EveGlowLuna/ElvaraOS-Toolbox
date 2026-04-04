@@ -2,7 +2,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:sukiUi="clr-namespace:SukiUI.Controls;assembly=SukiUI"
              mc:Ignorable="d" d:DesignWidth="960" d:DesignHeight="640"
              x:Class="ElvaraOSTools.Views.WelcomePage">
     <Grid Margin="16,12,16,16" ColumnDefinitions="Auto,*" RowDefinitions="*">
@@ -11,9 +10,8 @@
         <ScrollViewer Grid.Column="0"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalScrollBarVisibility="Disabled">
-            <sukiUi:GlassCard Padding="16,14,16,16" VerticalAlignment="Top">
+            <Border Classes="Card" Padding="16,14,16,16" VerticalAlignment="Top">
                 <StackPanel Orientation="Vertical" Spacing="0">
-                    <!-- 标题行 + 按钮 -->
                     <Grid ColumnDefinitions="*,Auto,Auto" Margin="0,0,0,8">
                         <TextBlock Grid.Column="0"
                                    Text="系统概览"
@@ -41,7 +39,7 @@
                     <Border Height="1" Background="#28FFFFFF" Margin="0,0,0,10" />
                     <Grid x:Name="InfoGrid" ColumnDefinitions="Auto,12,*" />
                 </StackPanel>
-            </sukiUi:GlassCard>
+            </Border>
         </ScrollViewer>
 
         <!-- 右侧：监控面板 -->
@@ -52,16 +50,16 @@
             <StackPanel Orientation="Vertical" Spacing="10">
 
                 <!-- 启动时间 -->
-                <sukiUi:GlassCard Padding="16,14,16,16">
+                <Border Classes="Card" Padding="16,14,16,16">
                     <StackPanel Spacing="0">
                         <TextBlock Text="启动时间" FontSize="13" FontWeight="Bold" Opacity="0.9" Margin="0,0,0,8"/>
                         <Border Height="1" Background="#28FFFFFF" Margin="0,0,0,10"/>
                         <StackPanel x:Name="UptimePanel" Spacing="4"/>
                     </StackPanel>
-                </sukiUi:GlassCard>
+                </Border>
 
                 <!-- 缓存占用 -->
-                <sukiUi:GlassCard Padding="16,14,16,16">
+                <Border Classes="Card" Padding="16,14,16,16">
                     <StackPanel Spacing="0">
                         <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
                             <TextBlock Grid.Column="0" Text="内存缓存" FontSize="13" FontWeight="Bold" Opacity="0.9" VerticalAlignment="Center"/>
@@ -75,10 +73,10 @@
                         <Border Height="1" Background="#28FFFFFF" Margin="0,0,0,10"/>
                         <StackPanel x:Name="CachePanel" Spacing="6"/>
                     </StackPanel>
-                </sukiUi:GlassCard>
+                </Border>
 
                 <!-- 温度监控 -->
-                <sukiUi:GlassCard Padding="16,14,16,16">
+                <Border Classes="Card" Padding="16,14,16,16">
                     <StackPanel Spacing="0">
                         <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,8">
                             <TextBlock Grid.Column="0" Text="温度监控" FontSize="13" FontWeight="Bold" Opacity="0.9" VerticalAlignment="Center"/>
@@ -92,7 +90,7 @@
                         <Border Height="1" Background="#28FFFFFF" Margin="0,0,0,10"/>
                         <StackPanel x:Name="TempPanel" Spacing="6"/>
                     </StackPanel>
-                </sukiUi:GlassCard>
+                </Border>
 
             </StackPanel>
         </ScrollViewer>

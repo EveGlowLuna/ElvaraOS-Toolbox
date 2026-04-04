@@ -21,7 +21,10 @@ public partial class NvidiaPage : UserControl
     private void WireAll()
     {
         var tabs = Get<TabControl>("MainTabs");
-        tabs.SelectionChanged += (_, _) => OnTabChanged(tabs.SelectedIndex);
+        tabs.SelectionChanged += (_, e) =>
+        {
+            if (e.Source is TabControl) OnTabChanged(tabs.SelectedIndex);
+        };
 
         Get<Button>("BtnInstallDriver").Click  += (_, _) => _ = InstallDriverAsync();
         Get<Button>("BtnInstallCuda").Click    += (_, _) => _ = InstallCudaAsync();

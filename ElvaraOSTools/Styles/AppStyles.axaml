@@ -1,0 +1,86 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Card: 圆角半透明面板，替代 GlassCard -->
+    <Style Selector="Border.Card">
+        <Setter Property="Background" Value="#1AFFFFFF"/>
+        <Setter Property="BorderBrush" Value="#22FFFFFF"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="CornerRadius" Value="8"/>
+    </Style>
+
+    <!-- Accent button -->
+    <Style Selector="Button.Accent">
+        <Setter Property="Background" Value="#E07820"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="CornerRadius" Value="6"/>
+        <Setter Property="Padding" Value="14,6"/>
+    </Style>
+    <Style Selector="Button.Accent:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#CC6010"/>
+    </Style>
+    <Style Selector="Button.Accent:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#AA4A08"/>
+    </Style>
+
+    <!-- Flat button -->
+    <Style Selector="Button.Flat">
+        <Setter Property="Background" Value="#18FFFFFF"/>
+        <Setter Property="Foreground" Value="#DDDDDD"/>
+        <Setter Property="CornerRadius" Value="6"/>
+    </Style>
+    <Style Selector="Button.Flat:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#28FFFFFF"/>
+    </Style>
+    <Style Selector="Button.Flat:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#10FFFFFF"/>
+    </Style>
+
+    <!-- TabControl / TabItem 样式 -->
+    <Style Selector="TabControl">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+    <Style Selector="TabItem">
+        <Setter Property="Foreground" Value="#AAAAAA"/>
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="Padding" Value="12,6"/>
+    </Style>
+    <Style Selector="TabItem:selected">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <!-- TextBox -->
+    <Style Selector="TextBox">
+        <Setter Property="Background" Value="#18FFFFFF"/>
+        <Setter Property="Foreground" Value="#EEEEEE"/>
+        <Setter Property="BorderBrush" Value="#33FFFFFF"/>
+        <Setter Property="CornerRadius" Value="6"/>
+    </Style>
+
+    <!-- ListBox -->
+    <Style Selector="ListBox">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+        <Setter Property="Background" Value="#33E07820"/>
+    </Style>
+    <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#1AFFFFFF"/>
+    </Style>
+
+    <!-- ComboBox -->
+    <Style Selector="ComboBox">
+        <Setter Property="Background" Value="#18FFFFFF"/>
+        <Setter Property="Foreground" Value="#EEEEEE"/>
+        <Setter Property="BorderBrush" Value="#33FFFFFF"/>
+        <Setter Property="CornerRadius" Value="6"/>
+    </Style>
+
+    <!-- ProgressBar -->
+    <Style Selector="ProgressBar">
+        <Setter Property="Background" Value="#22FFFFFF"/>
+        <Setter Property="CornerRadius" Value="2"/>
+    </Style>
+
+</Styles>

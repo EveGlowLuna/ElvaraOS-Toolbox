@@ -207,10 +207,12 @@ public partial class WelcomePage : UserControl
 
         try
         {
-            var output = await RunAsync("free", "-b");
+            var output = await RunAsync("free", "-b", env: ("LANG", "C"));
             // Mem: total used free shared buff/cache available
-            var line = output.Split('\n').FirstOrDefault(l => l.StartsWith("Mem:")) ?? "";
+            var line = output.Split('\n').FirstOrDefault(l => l.StartsWith("Mem:"))
+                       ?? throw new Exception("无法解析 free 输出");
             var parts = line.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length < 6) throw new Exception($"free 输出列数不足: {line}");
             var total = long.Parse(parts[1]);
             var cache = long.Parse(parts[5]);
             var pct = (double)cache / total;
@@ -374,7 +376,7 @@ public partial class WelcomePage : UserControl
         grid.Children.Add(t);
     }
 
-    private static async Task<string> RunAsync(string exe, string args)
+    private static async Task<string> RunAsync(string exe, string args, (string key, string value)? env = null)
     {
         var psi = new ProcessStartInfo(exe, args)
         {
@@ -383,6 +385,7 @@ public partial class WelcomePage : UserControl
             UseShellExecute = false,
             CreateNoWindow = true
         };
+        if (env.HasValue) psi.Environment[env.Value.key] = env.Value.value;
         var proc = Process.Start(psi) ?? throw new Exception($"无法启动 {exe}");
         var output = await proc.StandardOutput.ReadToEndAsync();
         await proc.WaitForExitAsync();
