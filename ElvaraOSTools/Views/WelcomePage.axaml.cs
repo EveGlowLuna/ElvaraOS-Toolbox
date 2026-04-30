@@ -56,7 +56,7 @@ public partial class WelcomePage : UserControl
             btnT.Click += async (_, _) => await LoadTempsAsync();
     }
 
-    // ── fastfetch ─────────────────────────────────────────────────────────────
+    // fastfetch
 
     private async Task LoadFastfetchAsync()
     {
@@ -166,7 +166,7 @@ public partial class WelcomePage : UserControl
         }
     }
 
-    // ── Uptime ────────────────────────────────────────────────────────────────
+    // Uptime
 
     private async Task LoadUptimeAsync()
     {
@@ -198,7 +198,7 @@ public partial class WelcomePage : UserControl
         }
     }
 
-    // ── Cache ─────────────────────────────────────────────────────────────────
+    // Cache
 
     private async Task LoadCacheAsync()
     {
@@ -262,7 +262,7 @@ public partial class WelcomePage : UserControl
         }
     }
 
-    // ── Temperatures ──────────────────────────────────────────────────────────
+    // Temperatures
 
     private async Task LoadTempsAsync()
     {
@@ -348,7 +348,7 @@ public partial class WelcomePage : UserControl
         }
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    // Helpers
 
     private static StackPanel MakeRow(string label, string value)
     {
@@ -399,11 +399,11 @@ public partial class WelcomePage : UserControl
         _ => new SolidColorBrush(Color.Parse("#5B9BD5"))
     };
 
-    // ── Row model ─────────────────────────────────────────────────────────────
+    // Row model
 
     private record InfoRow(string Label, string Value, double? ProgressValue = null);
 
-    // ── Category mapping ──────────────────────────────────────────────────────
+    // Category mapping
 
     private static string GetCategory(string type) => type switch
     {
@@ -417,7 +417,7 @@ public partial class WelcomePage : UserControl
         _ => "其他"
     };
 
-    // ── Data extraction ───────────────────────────────────────────────────────
+    // Data extraction
 
     private static List<InfoRow> ExtractRows(string type, JsonNode r)
     {

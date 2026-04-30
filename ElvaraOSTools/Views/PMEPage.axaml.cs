@@ -82,7 +82,7 @@ public partial class PMEPage : UserControl
         }
     }
 
-    // ── Orphans ───────────────────────────────────────────────────────────────
+    // Orphans
 
     private async Task LoadOrphansAsync()
     {
@@ -110,7 +110,7 @@ public partial class PMEPage : UserControl
         await LoadOrphansAsync();
     }
 
-    // ── Integrity ─────────────────────────────────────────────────────────────
+    // Integrity
 
     private async Task RunIntegrityAsync()
     {
@@ -128,7 +128,7 @@ public partial class PMEPage : UserControl
         SetText("IntegrityStatus", "检查完成");
     }
 
-    // ── Owner ─────────────────────────────────────────────────────────────────
+    // Owner
 
     private async Task QueryOwnerAsync()
     {
@@ -141,7 +141,7 @@ public partial class PMEPage : UserControl
         SetText("OwnerStatus", "完成");
     }
 
-    // ── Downgrade ─────────────────────────────────────────────────────────────
+    // Downgrade
 
     private async Task FindDowngradeAsync()
     {
@@ -181,7 +181,7 @@ public partial class PMEPage : UserControl
         SetText("DowngradeStatus", "降级完成");
     }
 
-    // ── Explicit ──────────────────────────────────────────────────────────────
+    // Explicit
 
     private async Task LoadExplicitAsync()
     {
@@ -235,7 +235,7 @@ public partial class PMEPage : UserControl
         SetText("ExplicitStatus", "安装完成");
     }
 
-    // ── PkgInfo ───────────────────────────────────────────────────────────────
+    // PkgInfo
 
     private async Task QueryPkgInfoAsync()
     {
@@ -250,7 +250,7 @@ public partial class PMEPage : UserControl
         SetText("PkgInfoStatus", "完成");
     }
 
-    // ── Mirror ────────────────────────────────────────────────────────────────
+    // Mirror
 
     private const string MirrorlistPath = "/etc/pacman.d/mirrorlist";
 
@@ -300,7 +300,7 @@ public partial class PMEPage : UserControl
         SetText("MirrorStatus", $"已备份到 {backup}");
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    // Helpers
 
     private static async Task StreamAsync(string exe, string args, Action<string> onLine)
     {

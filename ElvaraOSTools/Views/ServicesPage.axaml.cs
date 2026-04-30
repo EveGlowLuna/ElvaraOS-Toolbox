@@ -78,7 +78,7 @@ public partial class ServicesPage : UserControl
         Get<Button>("BtnStatus").Click  += (_, _) => _ = ShowServiceLogAsync();
     }
 
-    // ── Load services ─────────────────────────────────────────────────────────
+    // Load services
 
     private async Task LoadServicesAsync(bool force = false)
     {
@@ -145,7 +145,7 @@ public partial class ServicesPage : UserControl
         Get<TextBlock>("CountLabel").Text = $"共 {_allServices.Count} 个";
     }
 
-    // ── Select service ────────────────────────────────────────────────────────
+    // Select service
 
     private void SelectService(ServiceItem svc)
     {
@@ -158,7 +158,7 @@ public partial class ServicesPage : UserControl
             Get<Button>(name).IsEnabled = true;
     }
 
-    // ── Service actions ───────────────────────────────────────────────────────
+    // Service actions
 
     private async Task ServiceActionAsync(string action)
     {
@@ -180,7 +180,7 @@ public partial class ServicesPage : UserControl
         SetLog(string.IsNullOrWhiteSpace(log) ? "无日志" : log);
     }
 
-    // ── Blame ─────────────────────────────────────────────────────────────────
+    // Blame
 
     private async Task ShowBlameAsync()
     {
@@ -191,7 +191,7 @@ public partial class ServicesPage : UserControl
         Get<TextBlock>("DetailName").Text = "启动耗时分析";
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    // Helpers
 
     private async Task RunElevatedStreamAsync(string command)
     {

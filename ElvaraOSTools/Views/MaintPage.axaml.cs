@@ -61,7 +61,7 @@ public partial class MaintPage : UserControl
         }
     }
 
-    // ── Paccache ──────────────────────────────────────────────────────────────
+    // Paccache
 
     private async Task LoadPaccacheInfoAsync()
     {
@@ -89,7 +89,7 @@ public partial class MaintPage : UserControl
         SetStatus("PaccacheStatus", "清理完成");
     }
 
-    // ── Journal ───────────────────────────────────────────────────────────────
+    // Journal
 
     private async Task LoadJournalInfoAsync()
     {
@@ -109,7 +109,7 @@ public partial class MaintPage : UserControl
         SetStatus("JournalStatus", "清理完成");
     }
 
-    // ── Pacnew ────────────────────────────────────────────────────────────────
+    // Pacnew
 
     private async Task LoadPacnewAsync()
     {
@@ -164,7 +164,7 @@ public partial class MaintPage : UserControl
         await LoadPacnewAsync();
     }
 
-    // ── Initramfs ─────────────────────────────────────────────────────────────
+    // Initramfs
 
     private async Task ExecInitramfsAsync()
     {
@@ -175,7 +175,7 @@ public partial class MaintPage : UserControl
         SetStatus("InitramfsStatus", "重建完成");
     }
 
-    // ── GRUB update ───────────────────────────────────────────────────────────
+    // GRUB update
 
     private async Task ExecGrubAsync()
     {
@@ -186,7 +186,7 @@ public partial class MaintPage : UserControl
         SetStatus("GrubStatus", "GRUB 更新完成");
     }
 
-    // ── GRUB cmdline editor ───────────────────────────────────────────────────
+    // GRUB cmdline editor
 
     private async Task LoadGrubCmdlineAsync()
     {
@@ -229,7 +229,7 @@ public partial class MaintPage : UserControl
         SetStatus("GrubEditStatus", "已保存，请切换到「更新 GRUB 配置」使其生效");
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    // Helpers
 
     private static async Task RunElevatedStreamAsync(string command, Action<string> onLine)
     {
